@@ -43,6 +43,7 @@ subprojects {
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
         implementation("org.springframework.boot:spring-boot-starter-actuator")
+        implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     }
 
     tasks.withType<KotlinCompile> {
