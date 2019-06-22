@@ -8,6 +8,7 @@ plugins {
     kotlin("kapt") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
     id("org.springframework.boot") version "2.1.5.RELEASE"
+    id("io.spring.dependency-management") version "1.0.6.RELEASE"
 }
 
 group = "poc"
@@ -27,6 +28,12 @@ subprojects {
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
 
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Greenwich.RELEASE")
+        }
+    }
+
     dependencies {
         implementation(kotlin("stdlib-jdk8"))
         implementation(kotlin("reflect"))
@@ -34,6 +41,8 @@ subprojects {
         // we need both to make IDEA working
         kapt("org.springframework.boot:spring-boot-configuration-processor")
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
+        implementation("org.springframework.boot:spring-boot-starter-actuator")
     }
 
     tasks.withType<KotlinCompile> {
