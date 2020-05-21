@@ -1,5 +1,6 @@
 package poc.resource_server.web.reactive.router
 
+import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.MediaType
@@ -13,10 +14,12 @@ class ServerInfoRouter {
         return RouterFunctions
             .route(
                 RequestPredicates.GET("/server-info"),
-                HandlerFunction<ServerResponse> {serverRequest ->
+                HandlerFunction { serverRequest ->
                     val serverInfo = ServerInfo(
                         port = serverRequest.uri().port
                     )
+
+                    logger.info("serverInfo: {}", serverInfo)
 
                     ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
@@ -28,4 +31,8 @@ class ServerInfoRouter {
     data class ServerInfo(
         val port: Int
     )
+
+    companion object {
+        private val logger = LoggerFactory.getLogger(ServerInfoRouter::class.java)
+    }
 }
