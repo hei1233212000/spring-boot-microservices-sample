@@ -20,7 +20,7 @@ class ServerInfoRouter {
 
                     ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromObject(serverInfo))
+                        .body(BodyInserters.fromValue(serverInfo))
                 }
             )
     }

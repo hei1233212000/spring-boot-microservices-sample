@@ -7,8 +7,8 @@ plugins {
     kotlin("jvm") version kotlinVersion
     kotlin("kapt") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
-    id("org.springframework.boot") version "2.1.5.RELEASE"
-    id("io.spring.dependency-management") version "1.0.6.RELEASE"
+    id("org.springframework.boot") version "2.2.5.RELEASE"
+    id("io.spring.dependency-management") version "1.0.9.RELEASE"
 }
 
 group = "poc"
@@ -28,9 +28,10 @@ subprojects {
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
 
-    dependencyManagement {
+    the<io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension>().apply {
         imports {
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Greenwich.RELEASE")
+            mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR3")
         }
     }
 
