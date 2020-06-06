@@ -1,4 +1,4 @@
-package poc.resource_server.config
+package poc.api_gateway.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.http.HttpMethod
@@ -7,8 +7,9 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.config.web.server.ServerHttpSecurity
 import org.springframework.security.web.server.SecurityWebFilterChain
 
-const val AUTHORITY_READ = "protected:read"
-
+/**
+ * Provide authentication check for specific path
+ */
 @EnableWebFluxSecurity
 class SecurityConfiguration {
     @Bean
@@ -16,8 +17,7 @@ class SecurityConfiguration {
         return http
             .authorizeExchange { exchanges: ServerHttpSecurity.AuthorizeExchangeSpec ->
                 exchanges
-                    /* we check the "scope" attribute in JWT to see if it has "protected:read" */
-                    .pathMatchers(HttpMethod.GET, "/protected/reader").hasAuthority("SCOPE_$AUTHORITY_READ")
+                    .pathMatchers(HttpMethod.GET, "/**/protected/**").authenticated()
                     .anyExchange().permitAll()
             }
             .oauth2ResourceServer { oauth2ResourceServer: ServerHttpSecurity.OAuth2ResourceServerSpec ->

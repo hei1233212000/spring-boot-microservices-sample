@@ -20,6 +20,11 @@ spring:
             - Path=/discovery-server/**, /eureka/**
           filters:
            - RewritePath=/discovery-server/(?<segment>.*), /$\{segment}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8100/auth/realms/spring-boot-poc-realm/protocol/openid-connect/certs
 server:
   port: 9999
 eureka:
