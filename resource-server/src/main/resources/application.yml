@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: resource-server
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8100/auth/realms/spring-boot-poc-realm/protocol/openid-connect/certs
 eureka:
   client:
     enabled: false

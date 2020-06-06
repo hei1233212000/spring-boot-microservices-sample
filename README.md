@@ -6,6 +6,7 @@ Sample project to show how to build microservices by using Kotlin, Spring Boo an
 - API Gateway
 - Discovery Server
 - Resource Server
+- Auth Server
 
 #### How to start
 
@@ -22,9 +23,9 @@ Sample project to show how to build microservices by using Kotlin, Spring Boo an
 ##### Start API Gateway
 >$ ./gradlew :api-gateway:clean :api-gateway:bootRun
 
+#### Start Auth Server
+Please check the [Auth Server README](./auth-server/README.md)
+
 #### Verify
 - Go to http://localhost:9999/discovery-server/ to access the Eureka page via the API Gateway
 - Call http://localhost:9999/api/server-info to access the endpoint for the Resource Server via the API Gateway
-
-### TODO:
-- Create Auth Server
