@@ -2,9 +2,6 @@
 
 We use Keycloak as our Auth server
 
-#### Build
->$ docker build .
-
 #### Run
 >$ docker-compose up -d
 
