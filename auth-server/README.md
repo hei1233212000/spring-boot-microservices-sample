@@ -6,7 +6,7 @@ We use Keycloak as our Auth server
 >$ docker build .
 
 #### Run
->$ docker run -p 8100:8080 {image id}
+>$ docker-compose up -d
 
 #### Generate Token for authenticated user
 >$ curl -X POST -d "client_id=spring-boot-poc-client" -d "username=spring-boot-poc-user" -d "password=abc123" -d "grant_type=password" -v "http://localhost:8100/auth/realms/spring-boot-poc-realm/protocol/openid-connect/token"

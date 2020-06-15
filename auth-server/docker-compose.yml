@@ -1,0 +1,11 @@
+version: '3'
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    ports:
+      - "8100:8080"
+    volumes:
+      - ./config/spring-boot-poc-realm.json:/tmp/spring-boot-poc-realm.json
+    environment:
+      - KEYCLOAK_IMPORT=/tmp/spring-boot-poc-realm.json
