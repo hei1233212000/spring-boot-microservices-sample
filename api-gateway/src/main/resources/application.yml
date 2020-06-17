@@ -25,6 +25,10 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:8100/auth/realms/spring-boot-poc-realm/protocol/openid-connect/certs
+  sleuth:
+    reactor:
+      # This is used to gain performance
+      decorate-on-each: false
 server:
   port: 9999
 eureka:
